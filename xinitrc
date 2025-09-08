@@ -3,8 +3,15 @@ export DISPLAY=:0
 xset s off
 xset -dpms
 xset s noblank
+xrandr --output DSI-1 --rotate inverted
+
+unclutter-xfixes -idle 0.01 -root &
+
 export XDG_CONFIG_HOME=/tmp
 export XDG_DATA_HOME=/tmp
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 url=${KIOSK_URL:-https://xkcd.com/303/}
 
 protocol="${url%%://*}"
@@ -38,4 +45,4 @@ done
 # Magic 10 second sleep
 sleep 10
 
-exec chromium-browser --window-position=0,0 --kiosk --no-sandbox --full-screen --incognito --noerrdialogs --disable-translate --no-first-run --fast --fast-start --ignore-gpu-blacklist --disable-quic --enable-fast-unload --enable-tcp-fast-open --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-zero-copy --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/tmp ${url}
+exec chromium-browser ${url} --no-sandbox --kiosk --noerrdialogs --disable-infobars --no-first-run --enable-features=OverlayScrollbar --start-maximized --use-gl=egl --enable-zero-copy --incognito --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --disable-session-crashed-bubble --disable-crash-reporter --temp-profile --disable-web-security --disable-features=VizDisplayCompositor --aggressive-cache-discard --disable-http-cache --disable-application-cache --disable-offline-load-stale-cache --disable-back-forward-cache
