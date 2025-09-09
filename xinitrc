@@ -3,6 +3,7 @@ export DISPLAY=:0
 xset s off
 xset -dpms
 xset s noblank
+xset -nocursor
 xrandr --output DSI-1 --rotate inverted
 
 unclutter-xfixes -idle 0.01 -root &
@@ -45,4 +46,29 @@ done
 # Magic 10 second sleep
 sleep 10
 
-exec chromium-browser ${url} --no-sandbox --kiosk --noerrdialogs --disable-infobars --no-first-run --enable-features=OverlayScrollbar --start-maximized --use-gl=egl --enable-zero-copy --incognito --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --disable-session-crashed-bubble --disable-crash-reporter --temp-profile --disable-web-security --disable-features=VizDisplayCompositor --aggressive-cache-discard --disable-http-cache --disable-application-cache --disable-offline-load-stale-cache --disable-back-forward-cache
+exec chromium-browser ${url} \
+  --no-sandbox \
+  --kiosk \
+  --noerrdialogs \
+  --disable-infobars \
+  --no-first-run \
+  --start-maximized \
+  --incognito \
+  --disable-background-timer-throttling \
+  --disable-renderer-backgrounding \
+  --disable-backgrounding-occluded-windows \
+  --disable-session-crashed-bubble \
+  --disable-crash-reporter \
+  --temp-profile \
+  --disable-web-security \
+  --aggressive-cache-discard \
+  --disable-http-cache \
+  --disable-application-cache \
+  --disable-offline-load-stale-cache \
+  --disable-back-forward-cache \
+  --use-gl=egl \
+  --enable-zero-copy \
+  --disable-font-subpixel-positioning \
+  --disable-lcd-text
+#  --disable-gpu 
+#  --disable-software-rasterize

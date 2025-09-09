@@ -6,6 +6,7 @@ RUN apk add unclutter-xfixes
 RUN apk add onboard
 RUN apk add musl-locales font-noto-emoji font-noto-cjk
 COPY xinitrc /root/.xinitrc
+COPY xorg.conf /etc/X11/xorg.conf
 COPY start.sh /
 ENTRYPOINT ["/start.sh"]
 
